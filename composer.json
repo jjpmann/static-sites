@@ -1,0 +1,25 @@
+{   
+    "name": "jjpmann/static-sites",
+    "type": "library",
+    "description": "Static html sites using any source for content.",
+    "keywords": ["static sites", "aws s3"],
+    "homepage": "http://github.com/jjpmann/static-sites",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jerry Price",
+            "email": "jjpmann@gmail.com",
+            "homepage": "http://github.com/jjpmann"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "StaticSites\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.2",
+        "league/flysystem": "^1.0",
+        "league/flysystem-aws-s3-v3": "^1.0"
+    }
+}
