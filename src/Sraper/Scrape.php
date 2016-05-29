@@ -1,6 +1,6 @@
 <?php
 
-namespace EE\StaticSites;
+namespace StaticSites\Sraper;
 
 use GuzzleHttp\Client;
 
@@ -8,16 +8,14 @@ class Scrape
 {
     protected $url;
 
-    public function __construct($url)
+    public function __construct(Client $client)
     {
-        $this->url = $url;
-
         $this->client = new Client();
     }
 
-    public function run()
+    public function run($url)
     {
-        $res = $this->client->request('GET', $this->url);
+        $res = $this->client->request('GET', $url);
 
         if ($res->getStatusCode() === 200) {
             return $res->getBody();

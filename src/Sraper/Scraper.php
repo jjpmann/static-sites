@@ -1,37 +1,35 @@
 <?php
 
-namespace EE\StaticSites;
+namespace StaticSites\Sraper;
 
 use Illuminate\Config\Repository;
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
+use GuzzleHttp\Client;
 
 class Scraper
 {
-    protected $location;
-
     protected $fs;
-
-    protected $list = [];
-
     protected $config;
-
-    protected $domain = 'http://www.lmo.com';
+    
+    protected $location;
+    protected $list = [];
+    protected $site = 'http://www.lmo.com';
 
     public function __construct(Repository $config)
     {
-        $this->fs = new Filesystem(new Local('..'));
         $this->config = $config;
-
-        $this->list = collect([
-
-        ]);
+    
+        $this->fs   = new Filesystem(new Local($config->location));
+        $this->list = collect($config->list);
+        $this->site = $config->site;
     }
 
     public function scrape()
     {
+        $scrape = new Scrape(new Client());
         $this->list->each(function ($item) {
-             $this->writePage($item, (new Scrape($item))->run());
+             $this->writePage($item, $scrape->run($item));
         });
     }
 
@@ -44,11 +42,12 @@ class Scraper
         return $write;
     }
 
-    private function getPage($url)
+    public function getPage($url)
     {
         $page = $this->reduce_double_slashes($url.'/index.html');
-        $page = str_replace($this->domain, '', $page);
-        $page = './site-dump/pages'.$page;
+        $site = $this->reduce_double_slashes($this->site.'/');
+        $page = str_replace($site, '', $page);
+        $page = $this->location.$page;
 
         return $page;
     }
@@ -57,4 +56,15 @@ class Scraper
     {
         return preg_replace('#([^/:])/+#', '\\1/', $str);
     }
+
+    public function getList()
+    {
+        return $this->list;
+    }
+
+    public function getSite()
+    {
+        return $this->site;
+    }
+
 }
