@@ -22,6 +22,8 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
 
         $config = m::mock('Illuminate\Config\Repository');
         // /$config->shouldReceive('get')->times(3);
+        $config->fsLocal = m::mock('League\Flysystem\Filesystem');
+        $config->fsRemote = m::mock('League\Flysystem\Filesystem');
         $config->list = $list;
         $config->location = $location;
         $config->site = $site;

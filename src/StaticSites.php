@@ -2,7 +2,11 @@
 
 namespace StaticSites;
 
+
+use League\Flysystem\Adapter\Local;
+use League\Flysystem\Filesystem;
 use StaticSites\Sraper\Scraper;
+use StaticSites\Pusher\Pusher;
 
 class StaticSites
 {
@@ -10,10 +14,15 @@ class StaticSites
     {
         $config = Config::parseYaml($file);
 
-        $scraper = new Scraper($config);
+        $fsLocal = new Filesystem(new Local($config->location));
+        $config->set('fsLocal', $fsLocal);
 
+        $scraper = new Scraper($config);
         $scraper->scrape();
 
-        var_dump($config);
+
+        $pusher = new Pusher($config);
+        $pusher->push();
+        
     }
 }

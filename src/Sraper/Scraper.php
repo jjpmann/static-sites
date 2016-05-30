@@ -55,7 +55,7 @@ class Scraper
     {
         $this->config = $config;
 
-        $this->fs = new Filesystem(new Local($config->location));
+        $this->fs = $config->fsLocal;
         $this->list = collect($config->list);
         $this->site = $config->site;
     }
