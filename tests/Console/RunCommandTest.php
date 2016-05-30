@@ -16,6 +16,10 @@ class RunCommandTest extends \PHPUnit_Framework_TestCase
         $input  = m::mock('Symfony\Component\Console\Input\InputInterface');
         $output = m::mock('Symfony\Component\Console\Output\OutputInterface');
 
+        $input->shouldReceive('getArgument')->times(1)->andReturn(false);
+        $output->shouldReceive('writeln')->times(1);
+
+
         $cmd->execute($input, $output);
     }
 }

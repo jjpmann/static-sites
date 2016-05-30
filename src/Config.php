@@ -25,4 +25,12 @@ class Config extends Repository
         return false;
         
     }
+
+
+    public function __get($var)
+    {
+        if ($this->has($var)) {
+            return $this->get($var);
+        }
+    }
 }

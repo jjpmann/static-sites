@@ -21,6 +21,7 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
         $site = isset($options['site']) ? $options['site'] : 'www.example.com';
 
         $config = m::mock('Illuminate\Config\Repository');
+        // /$config->shouldReceive('get')->times(3);
         $config->list       = $list;
         $config->location   = $location;
         $config->site       = $site;

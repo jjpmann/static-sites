@@ -9,39 +9,93 @@ use GuzzleHttp\Client;
 
 class Scraper
 {
+
+    /**
+     * The Flysystem local filesystem implementation.
+     *
+     * @var \League\Flysystem\Filesystem
+     */
     protected $fs;
+
+    /**
+     * Config Repository
+     *
+     * @var \Illuminate\Config\Repository
+     */
     protected $config;
     
+    /**
+     * file path of dump folder
+     *
+     * @var string
+     */
     protected $location;
-    protected $list = [];
-    protected $site = 'http://www.lmo.com';
+    
+    /**
+     * URLs to parse
+     *
+     * @var \Illuminate\Support\Collection
+     */
+    protected $list;
+    
+    /**
+     * URL of the site to be scraped
+     *
+     * @var string
+     */
+    protected $site;
 
+
+    /**
+     * Create a new scraper instance.
+     *
+     * @param  \Illuminate\Config\Repository $config
+     * @return void
+     */
     public function __construct(Repository $config)
     {
         $this->config = $config;
     
-        $this->fs   = new Filesystem(new Local($config->get('location')));
-        $this->list = collect($config->get('list'));
-        $this->site = $config->get('site');
+        $this->fs   = new Filesystem(new Local($config->location));
+        $this->list = collect($config->list);
+        $this->site = $config->site;
     }
 
+    /**
+     * Start the site Scraping process
+     *
+     * @return void
+     */
     public function scrape()
     {
         $scrape = new Scrape(new Client());
-        $this->list->each(function ($item) use ($scrape) {
-             $this->writePage($item, $scrape->run($item));
+        $this->list->each(function ($url) use ($scrape) {
+             $this->writePage($url, $scrape->run($url));
         });
     }
 
-    protected function writePage($item, $body)
+    /**
+     * Start the site Scraping process
+     *
+     * @param string $url
+     * @param \GuzzleHttp\Psr7\Stream $body
+     * @return void
+     */
+    protected function writePage($url, $body)
     {
-        $page = $this->getPage($item);
+        $page = $this->getPage($url);
 
         $write = $this->fs->put($page, "{$body}");
 
         return $write;
     }
 
+    /**
+     * Get static html page name from url
+     *
+     * @param string $url
+     * @return string
+     */
     public function getPage($url)
     {
         $page = $this->reduce_double_slashes($url.'/index.html');
