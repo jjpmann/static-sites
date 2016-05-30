@@ -20,15 +20,15 @@ class Scraper
     {
         $this->config = $config;
     
-        $this->fs   = new Filesystem(new Local($config->location));
-        $this->list = collect($config->list);
-        $this->site = $config->site;
+        $this->fs   = new Filesystem(new Local($config->get('location')));
+        $this->list = collect($config->get('list'));
+        $this->site = $config->get('site');
     }
 
     public function scrape()
     {
         $scrape = new Scrape(new Client());
-        $this->list->each(function ($item) {
+        $this->list->each(function ($item) use ($scrape) {
              $this->writePage($item, $scrape->run($item));
         });
     }

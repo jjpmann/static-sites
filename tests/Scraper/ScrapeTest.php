@@ -2,7 +2,7 @@
 
 use \Mockery as m;
 
-class Scrape extends \PHPUnit_Framework_TestCase
+class ScrapeTest extends \PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
