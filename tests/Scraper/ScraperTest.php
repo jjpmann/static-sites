@@ -16,15 +16,16 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
 
     protected function mockConfig($options = [])
     {
-        $list = isset($options['list']) ? $options['list'] : ['one', 'two',' three'];
+        $list = isset($options['list']) ? $options['list'] : ['one', 'two', ' three'];
         $location = isset($options['location']) ? $options['location'] : '.';
         $site = isset($options['site']) ? $options['site'] : 'www.example.com';
 
         $config = m::mock('Illuminate\Config\Repository');
         // /$config->shouldReceive('get')->times(3);
-        $config->list       = $list;
-        $config->location   = $location;
-        $config->site       = $site;
+        $config->list = $list;
+        $config->location = $location;
+        $config->site = $site;
+
         return $config;
     }
 
@@ -47,11 +48,10 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
     public function testLocation()
     {
         $site = 'http://www.example.com';
-        $config = $this->mockConfig(['site'=>$site]);
+        $config = $this->mockConfig(['site' => $site]);
         $scraper = new StaticSites\Sraper\Scraper($config);
 
         $this->assertEquals($site, $scraper->getSite());
-        
     }
 
     public function testGetPage()
@@ -63,7 +63,6 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($scraper->getPage('http://example.com'), 'index.html');
         $this->assertEquals($scraper->getPage('http://example.com/about'), 'about/index.html');
         $this->assertEquals($scraper->getPage('http://example.com/blog'), 'blog/index.html');
-
     }
 
     public function testWritePage()
@@ -73,5 +72,4 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
     public function testScrape()
     {
     }
-
 }

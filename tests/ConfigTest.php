@@ -1,10 +1,8 @@
 <?php
 
-use \Mockery as m;
 
 class ConfigTest extends \PHPUnit_Framework_TestCase
 {
- 
     public function testClassCreate()
     {
         $config = new StaticSites\Config();
@@ -21,16 +19,15 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('StaticSites\Config', $newConfig);
 
         $list = [
-            "http://thrice.net/",
-            "http://thrice.net/news/",
-            "http://thrice.net/shows/",
-            "http://thrice.net/videos/"
+            'http://thrice.net/',
+            'http://thrice.net/news/',
+            'http://thrice.net/shows/',
+            'http://thrice.net/videos/',
         ];
 
         $this->assertEquals('./site-dump/', $newConfig->get('location'));
         $this->assertEquals('http://thrice.net', $newConfig->get('site'));
         $this->assertEquals($list, $newConfig->get('list'));
-
     }
 
     public function testParseNoFile()
@@ -42,6 +39,4 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $newConfig = $config->parseYaml($file);
         $this->assertFalse($newConfig);
     }
-
-
 }

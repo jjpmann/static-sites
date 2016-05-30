@@ -10,9 +10,9 @@ class Push
     public function __construct(Repository $config)
     {
         $this->config = $config;
-    
-        $this->fs   = new Filesystem(new Local($config->get('location')));
-        
+
+        $this->fs = new Filesystem(new Local($config->get('location')));
+
         $this->list = collect($config->get('list'));
         $this->site = $config->get('site');
     }

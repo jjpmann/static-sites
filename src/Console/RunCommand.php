@@ -23,6 +23,7 @@ class RunCommand extends BaseCommand
                 'Path to config.yml file.'
             );
     }
+
     /**
      * Execute the command.
      *
@@ -45,5 +46,4 @@ class RunCommand extends BaseCommand
 
         $output->writeLn('done');
     }
-
 }

@@ -17,6 +17,7 @@ class ScrapeTest extends \PHPUnit_Framework_TestCase
     private function getClient()
     {
         $client = m::mock('GuzzleHttp\Client');
+
         return $client;
     }
 
@@ -31,5 +32,4 @@ class ScrapeTest extends \PHPUnit_Framework_TestCase
         $scrape = new StaticSites\Sraper\Scrape($this->getClient());
         $this->assertInstanceOf('GuzzleHttp\Psr7\Stream', $scrape->run('http://www.example.com'));
     }
-
 }
