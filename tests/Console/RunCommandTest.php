@@ -12,8 +12,8 @@ class RunCommandTest extends \PHPUnit_Framework_TestCase
 
     public function testExecute()
     {
-        $cmd    = new StaticSites\Console\RunCommand();
-        $input  = m::mock('Symfony\Component\Console\Input\InputInterface');
+        $cmd = new StaticSites\Console\RunCommand();
+        $input = m::mock('Symfony\Component\Console\Input\InputInterface');
         $output = m::mock('Symfony\Component\Console\Output\OutputInterface');
 
         $input->shouldReceive('getArgument')->times(1)->andReturn(false);

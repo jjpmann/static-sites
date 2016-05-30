@@ -2,7 +2,6 @@
 
 namespace StaticSites\Console;
 
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -17,6 +16,7 @@ class MakeCommand extends BaseCommand
             ->setName('make')
             ->setDescription('Install Static Sites into current project');
     }
+
     /**
      * Execute the command.
      *
@@ -28,12 +28,11 @@ class MakeCommand extends BaseCommand
         //$host = $input->getArgument('host');
         //$ip = $input->getArgument('ip');
         if (file_exists($this->configFile)) {
-            $output->writeLn("Static Sites already installed.");
+            $output->writeLn('Static Sites already installed.');
             exit;
-        }   
+        }
 
         copy($this->stubConfigFile, $this->configFile);
-        $output->writeLn("Static Sites installed.");
-        
+        $output->writeLn('Static Sites installed.');
     }
 }
