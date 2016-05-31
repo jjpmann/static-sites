@@ -4,9 +4,8 @@ namespace StaticSites\Filesystem;
 
 use League\Flysystem\Filesystem;
 
-class BaseFileSystem
+class BaseFilesystem
 {
-
     /**
      * Config Repository.
      *
@@ -34,6 +33,7 @@ class BaseFileSystem
     public static function create($config)
     {
         $fs = new static($config);
+
         return $fs->getFilesystem();
     }
 }
