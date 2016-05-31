@@ -25,14 +25,13 @@ class MakeCommand extends BaseCommand
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        //$host = $input->getArgument('host');
-        //$ip = $input->getArgument('ip');
+
         if (file_exists($this->configFile)) {
             $output->writeLn('Static Sites already installed.');
             exit;
         }
-
-        copy($this->stubConfigFile, $this->configFile);
+        
+        copy($this->configStubFile, $this->configFile);
         $output->writeLn('Static Sites installed.');
     }
 }

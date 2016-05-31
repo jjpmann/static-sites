@@ -10,16 +10,16 @@ class RunCommandTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('StaticSites\Console\RunCommand', $cmd);
     }
 
-    public function testExecute()
-    {
-        $cmd = new StaticSites\Console\RunCommand();
-        $input = m::mock('Symfony\Component\Console\Input\InputInterface');
-        $output = m::mock('Symfony\Component\Console\Output\OutputInterface');
+    // public function testExecute()
+    // {
+    //     $cmd = new StaticSites\Console\RunCommand();
+    //     $input = m::mock('Symfony\Component\Console\Input\InputInterface');
+    //     $output = m::mock('Symfony\Component\Console\Output\OutputInterface');
 
-        $input->shouldReceive('getArgument')->times(1)->andReturn(false);
-        $output->shouldReceive('writeln')->times(1);
+    //     $input->shouldReceive('getArgument')->times(1)->andReturn(false);
+    //     $output->shouldReceive('writeln')->times(1);
 
 
-        $cmd->execute($input, $output);
-    }
+    //     $cmd->execute($input, $output);
+    // }
 }

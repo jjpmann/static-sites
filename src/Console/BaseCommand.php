@@ -22,7 +22,7 @@ class BaseCommand extends Command
      *
      * @var string
      **/
-    protected $configStufFile;
+    protected $configStubFile;
 
     /**
      * The config settings parsed from config file.
@@ -63,7 +63,7 @@ class BaseCommand extends Command
         $this->defaultName = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $this->projectName)));
 
         $this->configFile = $this->basePath.'/static-sites.yml';
-        $this->configStufFile = $this->basePath.'/stubs/sample.yml';
+        $this->configStubFile = $this->basePath.'/stubs/sample.yml';
 
         parent::__construct($name);
     }
