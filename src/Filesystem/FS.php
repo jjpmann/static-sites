@@ -4,7 +4,6 @@ namespace StaticSites\Filesystem;
 
 class FS
 {
-
     /**
      * Config Repository.
      *
@@ -18,7 +17,7 @@ class FS
      * @var \League\Flysystem\Filesystem
      */
     protected $fsRemote;
-    
+
     /**
      * Remote Filesytem.
      *
@@ -33,7 +32,6 @@ class FS
         $this->fsRemote = RemoteFilesystem::create($config);
 
         $this->fsLocal = LocalFilesystem::create($config);
-   
     }
 
     public function __get($var)
