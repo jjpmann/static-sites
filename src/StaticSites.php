@@ -19,8 +19,8 @@ class StaticSites
         $config->set('fsLocal', $fs->fsLocal);
         $config->set('fsRemote', $fs->fsRemote);
 
-        // $scraper = new Scraper($config);
-        // $scraper->scrape();
+        $scraper = new Scraper($config);
+        $scraper->scrape();
 
         $pusher = new Pusher($config);
         $pusher->push();
