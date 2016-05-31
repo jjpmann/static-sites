@@ -2,24 +2,25 @@
 
 namespace StaticSites;
 
-
-use League\Flysystem\Adapter\Local;
-use League\Flysystem\Filesystem;
-use StaticSites\Sraper\Scraper;
 use StaticSites\Pusher\Pusher;
+use StaticSites\Sraper\Scraper;
+use StaticSites\Filesystem\FS;
+//use StaticSites\Filesystem\RemoteFilesystem;
 
 class StaticSites
 {
+
     public function run($file)
     {
         $config = Config::parseYaml($file);
 
-        $fsLocal = new Filesystem(new Local($config->location));
-        $config->set('fsLocal', $fsLocal);
+        $fs = FS::create($config);
 
-        $scraper = new Scraper($config);
-        $scraper->scrape();
+        $config->set('fsLocal', $fs->fsLocal);
+        $config->set('fsRemote', $fs->fsRemote);
 
+        // $scraper = new Scraper($config);
+        // $scraper->scrape();
 
         $pusher = new Pusher($config);
         $pusher->push();

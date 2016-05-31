@@ -10,4 +10,9 @@ list:
     - http://thrice.net/shows/
     - http://thrice.net/videos/
 
-
+aws:  
+    key: xxxxxxxxxxxxxxxxxxxx
+    secret: xxxxxxxxxx+xxxxxxxxxxxxxxxxxxxx
+    region: us-east-1
+    version: latest
+    bucket: bucket.thrice.net

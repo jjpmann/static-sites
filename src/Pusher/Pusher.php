@@ -26,6 +26,10 @@ class Pusher
 
     public function push()
     {
-        
+        $contents = collect($this->source->listContents(null, true));
+
+        $contents->each(function($x, $y){
+            var_dump($x, $y);
+        });
     }
 }

@@ -5,3 +5,4 @@ coverage.xml
 composer.lock
 tests/files
 site-dump
+static-sites.yml
