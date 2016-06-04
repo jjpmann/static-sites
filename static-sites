@@ -13,4 +13,7 @@ $app = new Symfony\Component\Console\Application('Static Sites', '0.1');
 $app->add(new StaticSites\Console\RunCommand);
 $app->add(new StaticSites\Console\MakeCommand);
 
+// Dev Only
+$app->add(new StaticSites\Console\TestCommand);
+
 $app->run();

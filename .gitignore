@@ -6,3 +6,4 @@ composer.lock
 tests/files
 site-dump
 static-sites.yml
+node_modules

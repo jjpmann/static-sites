@@ -1,0 +1,16 @@
+{
+  "name": "static-sites",
+  "version": "1.0.0",
+  "description": "Static html sites using any source for content.",
+  "author": "",
+  "dependencies": {},
+  "devDependencies": {
+      "onchange": "^2.4.0"
+    },
+  "license": "MIT",
+  "scripts": {
+    "phpunit": "phpunit --colors",
+    "watch:phpunit": "onchange 'src/**/*.php' -- npm run phpunit"
+  }
+
+}

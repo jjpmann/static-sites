@@ -27,7 +27,7 @@ class ScrapeTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('StaticSites\Sraper\Scrape', $scrape);
     }
 
-    public function testRum()
+    public function _estRun()
     {
         $scrape = new StaticSites\Sraper\Scrape($this->getClient());
         $this->assertInstanceOf('GuzzleHttp\Psr7\Stream', $scrape->run('http://www.example.com'));
