@@ -18,7 +18,7 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
     {
         $list = isset($options['list']) ? $options['list'] : ['one', 'two', ' three'];
         $location = isset($options['location']) ? $options['location'] : '.';
-        $site = isset($options['site']) ? $options['site'] : 'www.example.com';
+        $site = isset($options['site']) ? $options['site'] : ['local' => 'www.example.com', 'remote' => 'remote.example.com'];
 
         $config = m::mock('Illuminate\Config\Repository');
         // /$config->shouldReceive('get')->times(3);
@@ -49,16 +49,17 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
 
     public function testLocation()
     {
-        $site = 'http://www.example.com';
-        $config = $this->mockConfig(['site' => $site]);
+        
+        $config = $this->mockConfig(['site' => ['local' => 'http://www1.example.com', 'remote' => 'http://www2.example.com']]);
         $scraper = new StaticSites\Sraper\Scraper($config);
 
-        $this->assertEquals($site, $scraper->getSite());
+        $this->assertEquals('http://www1.example.com', $scraper->getLocalSite());
+        $this->assertEquals('http://www2.example.com', $scraper->getRemoteSite());
     }
 
     public function testGetPage()
     {
-        $config = $this->mockConfig(['location' => '.', 'site' => 'http://example.com']);
+        $config = $this->mockConfig(['location' => '.', 'site' => ['local' => 'http://example.com', 'remote' => '']]);
         $scraper = new StaticSites\Sraper\Scraper($config);
 
 

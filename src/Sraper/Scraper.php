@@ -4,8 +4,6 @@ namespace StaticSites\Sraper;
 
 use GuzzleHttp\Client;
 use Illuminate\Config\Repository;
-use League\Flysystem\Adapter\Local;
-use League\Flysystem\Filesystem;
 
 class Scraper
 {
@@ -42,7 +40,14 @@ class Scraper
      *
      * @var string
      */
-    protected $site;
+    protected $localSite;
+
+    /**
+     * URL of the site scrapped site will be hosted.
+     *
+     * @var string
+     */
+    protected $remoteSite;
 
     /**
      * Create a new scraper instance.
@@ -57,7 +62,9 @@ class Scraper
 
         $this->fs = $config->fsLocal;
         $this->list = collect($config->list);
-        $this->site = $config->site;
+
+        $this->localSite = $config->site['local'];
+        $this->remoteSite = $config->site['remote'];
     }
 
     /**
@@ -100,7 +107,7 @@ class Scraper
     public function getPage($url)
     {
         $page = $this->reduce_double_slashes($url.'/index.html');
-        $site = $this->reduce_double_slashes($this->site.'/');
+        $site = $this->reduce_double_slashes($this->localSite.'/');
         $page = str_replace($site, '', $page);
         $page = $this->location.$page;
 
@@ -117,8 +124,13 @@ class Scraper
         return $this->list;
     }
 
-    public function getSite()
+    public function getLocalSite()
     {
-        return $this->site;
+        return $this->localSite;
+    }
+
+    public function getRemoteSite()
+    {
+        return $this->remoteSite;
     }
 }
