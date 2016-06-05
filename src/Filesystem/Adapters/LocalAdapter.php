@@ -14,6 +14,6 @@ class LocalAdapter extends Adapter
     {
         $this->validate();
 
-        return new Local($this->get('dir'));
+        return new Local($this->settings('dir'));
     }
 }

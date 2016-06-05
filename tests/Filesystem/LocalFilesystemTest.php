@@ -2,7 +2,7 @@
 
 use \Mockery as m;
 
-class LocalFileSystem //Test extends BaseFileSystemTest
+class LocalFileSystemTest extends BaseFileSystemTest
 {
     protected function setUp()
     {
