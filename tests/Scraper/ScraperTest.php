@@ -49,7 +49,6 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
 
     public function testLocation()
     {
-        
         $config = $this->mockConfig(['site' => ['local' => 'http://www1.example.com', 'remote' => 'http://www2.example.com']]);
         $scraper = new StaticSites\Sraper\Scraper($config);
 
