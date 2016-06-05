@@ -25,12 +25,11 @@ class MakeCommand extends BaseCommand
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
-
         if (file_exists($this->configFile)) {
             $output->writeLn('Static Sites already installed.');
             exit;
         }
-        
+
         copy($this->configStubFile, $this->configFile);
         $output->writeLn('Static Sites installed.');
     }
