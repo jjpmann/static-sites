@@ -2,7 +2,7 @@
 
 namespace StaticSites\Filesystem\Adapters;
 
-use League\Flysystem\Sftp\SftpAdapter;
+use League\Flysystem\Sftp\SftpAdapter as Sftp;
 
 class SftpAdapter extends Adapter
 {
@@ -17,7 +17,7 @@ class SftpAdapter extends Adapter
     {
         $this->validate();
 
-        return new self([
+        return new Sftp([
             // required
             'host'     => $this->settings('host'),
             'username' => $this->settings('username'),
