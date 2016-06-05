@@ -2,7 +2,7 @@
 
 use \Mockery as m;
 
-class LocalFileSystemTest extends BaseFileSystemTest
+class LocalFilesystemTest extends BaseFilesystemTest
 {
     protected function setUp()
     {
@@ -16,13 +16,13 @@ class LocalFileSystemTest extends BaseFileSystemTest
 
     public function testClassCreate()
     {
-        $fs = new StaticSites\Filesystem\LocalFileSystem($this->mockConfig());
-        $this->assertInstanceOf('StaticSites\Filesystem\LocalFileSystem', $fs);
+        $fs = new StaticSites\Filesystem\LocalFileystem($this->mockConfig());
+        $this->assertInstanceOf('StaticSites\Filesystem\LocalFilesystem', $fs);
     }
 
     public function testLocalAdapter()
     {
-        $fs = new StaticSites\Filesystem\LocalFileSystem($this->mockConfig());
+        $fs = new StaticSites\Filesystem\LocalFilesystem($this->mockConfig());
         $this->assertInstanceOf('League\Flysystem\Adapter\Local', $fs->getAdapter());
     }
 }
