@@ -16,7 +16,7 @@ class LocalFilesystemTest extends BaseFilesystemTest
 
     public function testClassCreate()
     {
-        $fs = new StaticSites\Filesystem\LocalFileystem($this->mockConfig());
+        $fs = new StaticSites\Filesystem\LocalFilesystem($this->mockConfig());
         $this->assertInstanceOf('StaticSites\Filesystem\LocalFilesystem', $fs);
     }
 
