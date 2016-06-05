@@ -2,14 +2,14 @@
 
 namespace StaticSites;
 
+use StaticSites\Filesystem\FS;
 use StaticSites\Pusher\Pusher;
 use StaticSites\Sraper\Scraper;
-use StaticSites\Filesystem\FS;
+
 //use StaticSites\Filesystem\RemoteFilesystem;
 
 class StaticSites
 {
-
     public function run($file)
     {
         $config = Config::parseYaml($file);
@@ -24,6 +24,5 @@ class StaticSites
 
         $pusher = new Pusher($config);
         $pusher->push();
-        
     }
 }

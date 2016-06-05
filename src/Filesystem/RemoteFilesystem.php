@@ -2,7 +2,7 @@
 
 namespace StaticSites\Filesystem;
 
-class RemoteFileSystem extends BaseFilesystem
+class RemoteFilesystem extends BaseFilesystem
 {
     protected $type = 'remote';
 }

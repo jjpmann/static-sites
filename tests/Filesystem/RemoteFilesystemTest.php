@@ -1,8 +1,8 @@
 <?php
-    
+
 use \Mockery as m;
 
-class RemoteFileSystemTest extends BaseFileSystemTest
+class RemoteFilesystemTest extends BaseFileSystemTest
 {
     protected function setUp()
     {
@@ -23,7 +23,7 @@ class RemoteFileSystemTest extends BaseFileSystemTest
     public function testS3AdapterException()
     {
         $options['remote'] = [
-            'type' => 's3'
+            'type' => 's3',
         ];
         $fs = new StaticSites\Filesystem\RemoteFileSystem($this->mockConfig($options));
 
@@ -34,23 +34,21 @@ class RemoteFileSystemTest extends BaseFileSystemTest
     public function testS3Adapter()
     {
         $options['remote'] = [
-            'type' => 's3',
-            'key' => 'xxx', 
-            'secret' => 'xxxx', 
-            'region' => 'xxx', 
+            'type'    => 's3',
+            'key'     => 'xxx',
+            'secret'  => 'xxxx',
+            'region'  => 'xxx',
             'version' => 'latest',
-            'bucket' => 'xxxx'
+            'bucket'  => 'xxxx',
         ];
         $fs = new StaticSites\Filesystem\RemoteFileSystem($this->mockConfig($options));
         $this->assertInstanceOf('League\Flysystem\AwsS3v3\AwsS3Adapter', $fs->getAdapter());
-        
     }
 
     public function testFtpAdapterException()
     {
-
         $options['remote'] = [
-            'type' => 'ftp'
+            'type' => 'ftp',
         ];
 
         $fs = new StaticSites\Filesystem\RemoteFileSystem($this->mockConfig($options));
@@ -59,12 +57,12 @@ class RemoteFileSystemTest extends BaseFileSystemTest
     }
 
     public function testFtpAdapter()
-    {   
+    {
         $options['remote'] = [
-            'type' => 'ftp',
-            'host' => 'xxx.com',
+            'type'     => 'ftp',
+            'host'     => 'xxx.com',
             'username' => 'name',
-            'password' => 'xxx'
+            'password' => 'xxx',
         ];
         $fs = new StaticSites\Filesystem\RemoteFileSystem($this->mockConfig($options));
         $this->assertInstanceOf('League\Flysystem\Adapter\Ftp', $fs->getAdapter());
@@ -83,10 +81,10 @@ class RemoteFileSystemTest extends BaseFileSystemTest
     public function testSftpAdapter()
     {
         $options['remote'] = [
-            'type' => 'sftp',
-            'host' => 'xxx.com',
+            'type'     => 'sftp',
+            'host'     => 'xxx.com',
             'username' => 'name',
-            'password' => 'xxx'
+            'password' => 'xxx',
         ];
         $fs = new StaticSites\Filesystem\RemoteFileSystem($this->mockConfig($options));
         $this->assertInstanceOf('League\Flysystem\Sftp\SftpAdapter', $fs->getAdapter());

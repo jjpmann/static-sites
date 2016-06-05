@@ -2,7 +2,7 @@
 
 use \Mockery as m;
 
-class BaseFileSystemTest extends \PHPUnit_Framework_TestCase
+class BaseFilesystemTest extends \PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
@@ -16,7 +16,6 @@ class BaseFileSystemTest extends \PHPUnit_Framework_TestCase
 
     protected function mockConfig($options = [])
     {
-
         $list = isset($options['list']) ? $options['list'] : ['one', 'two', ' three'];
         $location = isset($options['location']) ? $options['location'] : '.';
         $site = isset($options['site']) ? $options['site'] : 'www.example.com';
@@ -25,11 +24,11 @@ class BaseFileSystemTest extends \PHPUnit_Framework_TestCase
         // /$config->shouldReceive('get')->times(3);
         $config->filesystem['local'] = [
             'type' => 'local',
-            'dir' => './site-dump'
+            'dir'  => './site-dump',
         ];
         $config->filesystem['remote'] = [
             'type' => 'local',
-            'dir' => './site-dump'
+            'dir'  => './site-dump',
         ];
         if (isset($options['local'])) {
             $config->filesystem['local'] = $options['local'];
@@ -43,9 +42,8 @@ class BaseFileSystemTest extends \PHPUnit_Framework_TestCase
 
         return $config;
     }
+
     public function testNothing()
     {
-
     }
-
 }

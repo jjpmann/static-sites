@@ -5,9 +5,8 @@ namespace StaticSites\Filesystem;
 use League\Flysystem\Filesystem;
 use StaticSites\Filesystem\Adapters\Adapter;
 
-abstract class BaseFileSystem
+abstract class BaseFilesystem
 {
-
     /**
      * Config Repository.
      *
@@ -59,13 +58,12 @@ abstract class BaseFileSystem
 
     protected function init($type)
     {
-
         if (!isset($this->supportedAdapters[$type])) {
             throw new \Exception("Adapter error: {$type} does not exists.", 1);
         }
 
-        $class = $this->supportedAdapters[$type];        
-        $this->adapter =  new $class($this->config->filesystem[$this->type]);
+        $class = $this->supportedAdapters[$type];
+        $this->adapter = new $class($this->config->filesystem[$this->type]);
     }
 
     public function getFilesystem()
@@ -81,6 +79,7 @@ abstract class BaseFileSystem
     public static function create($config)
     {
         $fs = new static($config);
+
         return $fs->getFilesystem();
     }
 
@@ -88,5 +87,4 @@ abstract class BaseFileSystem
     {
         $this->adapter->validate();
     }
-
 }
