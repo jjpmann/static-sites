@@ -92,7 +92,9 @@ class Scraper
     {
         $page = $this->getPage($url);
 
-        $write = $this->fs->put($page, "{$body}");
+        $body = str_replace($this->localSite, $this->remo, "{$body}");
+
+        $write = $this->fs->put($page, $body);
 
         return $write;
     }
